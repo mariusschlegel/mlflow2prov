@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=../mlflow2prov/config/schema.json
+- extract:
+        repository_path: "/home/user/dev/project_foo/project_foo.git"
+        mlflow_url: "http://localhost-foo:5000"
+- extract:
+        repository_path: "/home/user/dev/project_bar/project_bar.git"
+        mlflow_url: "http://localhost-bar:5000"
+- load:
+        input: [example.rdf]
+- save:
+        output: result
+        format: [json, xml, rdf, provn, dot]
+- merge:
+- transform:
+        use_pseudonyms: true
+- statistics:
+        resolution: fine
+        formatter: table

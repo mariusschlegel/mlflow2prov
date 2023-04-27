@@ -1,0 +1,10 @@
+--- sqlalchemy_store.py.orig	2023-04-19 10:18:19.624038588 +0200
++++ sqlalchemy_store.py	2023-04-19 10:18:42.812868428 +0200
+@@ -921,7 +921,6 @@
+         with self.ManagedSessionMaker() as session:
+             query = (
+                 filter_query.options(*self._get_eager_model_version_query_options())
+-                .filter(SqlModelVersion.current_stage != STAGE_DELETED_INTERNAL)
+                 .order_by(*parsed_orderby)
+                 .limit(max_results_for_query)
+             )

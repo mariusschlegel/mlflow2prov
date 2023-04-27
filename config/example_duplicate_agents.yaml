@@ -1,0 +1,2 @@
+- name: "Foo Bar"
+  aliases: ["foo", "bar", "foobar", "root"]

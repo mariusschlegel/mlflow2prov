@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=../mlflow2prov/config/schema.json
+- extract:
+        repository_path: "/home/user/dev/mlproject-foo"
+        mlflow_url: "http://localhost-foo:5000"
+- extract:
+        repository_path: "/home/user/dev/mlproject-bar"
+        mlflow_url: "http://localhost-bar:5000"
+- load:
+        input: [example.rdf]
+- transform:
+        use_pseudonyms: true
+        eliminate_duplicates: true
+- merge:
+- save:
+        output: result
+        format: [json, rdf, xml, provn, dot]
+- statistics:
+        resolution: fine
+        format: table
