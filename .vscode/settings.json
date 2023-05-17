@@ -10,5 +10,5 @@
     "isort.importStrategy": "fromEnvironment",
     "black-formatter.importStrategy": "fromEnvironment",
     "ltex.enabled": ["markdown"],
-    "ltex.language": "en-US",
+    "ltex.language": "en-US"
 }

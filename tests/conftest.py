@@ -19,8 +19,8 @@ def mlflow_context():
         with zipfile.ZipFile(file=path_zipfile_str, mode="r") as archive:
             archive.extractall(path=path_str)
 
-        path_mlruns_str = str(pathlib.Path(path_extracted_str) / "mlruns")
-        fix_artifact_paths(path=path_mlruns_str)
+    path_mlruns_str = str(pathlib.Path(path_extracted_str) / "mlruns")
+    fix_artifact_paths(path=path_mlruns_str)
 
     process = subprocess.Popen(
         args=shlex.split("mlflow server"),

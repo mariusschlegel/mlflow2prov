@@ -4,14 +4,16 @@
 
 MLflow2PROV is a Python library and command line tool for extracting provenance graphs from ML experiment projects that use Git repositories and MLflow tracking. The underlying data model is compliant with the [W3C PROV](https://www.w3.org/TR/prov-overview/) specification.
 
+For a discussion of the ideas, please see the following paper:
+
+* Marius Schlegel and Kai-Uwe Sattler: [*MLflow2PROV: Extracting Provenance from Machine Learning Experiments*](https://doi.org/10.1145/3595360.3595859). 7th Workshop on Data Management for End-to-End Machine Learning (DEEM '23), June 18, 2023, Seattle, WA, USA.
+
 ## Installation
 
-MLflow2PROV can currently be installed via [Poetry](https://python-poetry.org) (soon also available on [PyPI](https://pypi.org)). For instructions on installing Poetry, please see [here](https://python-poetry.org/docs/#installation).
-
-Some dependencies still require Python 3.10 (for example, see <https://github.com/numba/numba/issues/8304> and <https://github.com/numba/llvmlite/issues/885>). You may be required to install Python 3.10 (using [pyenv](https://github.com/pyenv/pyenv)) and tell Poetry to use this version:
+MLflow2PROV can currently be installed via [Poetry](https://python-poetry.org) (soon also available on [PyPI](https://pypi.org)). For instructions on installing Poetry, please see [here](https://python-poetry.org/docs/#installation). MLflow2PROV currently requires either Python 3.10 or 3.11. Thus, you may be required to install Python (using [Pyenv](https://github.com/pyenv/pyenv)) and tell Poetry to use this version (in the following, exemplarily for Python 3.10):
 
 ```bash
-sudo dnf install -y openssl-devel libffi-devel bzip2-devel readline-devel sqlite-devel xz-devel tk-devel  # examplary installation of Python dependencies in Fedora 38
+sudo dnf install -y openssl-devel libffi-devel bzip2-devel readline-devel sqlite-devel xz-devel tk-devel  # exemplary installation of Python dependencies in Fedora 38
 pyenv install 3.10.11
 poetry env use 3.10.11
 ```
@@ -31,8 +33,8 @@ poetry install
 To currently use all features of MLflow2PROV, the application of two minor patches to the MLflow installation is required. You can apply the patches locally as follows:
 
 ```bash
-patch .venv/lib/python3.10/site-packages/mlflow/utils/search_utils.py < patches/mlflow-2.3.0-search_utils.patch
-patch .venv/lib/python3.10/site-packages/mlflow/store/model_registry/sqlalchemy_store.py < patches/mlflow-2.3.0-sqlalchemy_store.patch
+patch .venv/lib/python3.10/site-packages/mlflow/utils/search_utils.py < patches/mlflow-2.3.2-search_utils.patch
+patch .venv/lib/python3.10/site-packages/mlflow/store/model_registry/sqlalchemy_store.py < patches/mlflow-2.3.2-sqlalchemy_store.patch
 ```
 
 Specifically, these patches adjust the `FileStore` and `SQLAlchemyStore` Model Registry backend implementations to also enable reading deleted `ModelVersion` objects. This is especially required to create instances of the `RegisteredModelVersionDeletion` provenance model. The issue has been already reported to the MLflow project (see <https://github.com/mlflow/mlflow/issues/8225>).
@@ -161,6 +163,21 @@ MLflow2PROV supports multiple output formats provided by the [`prov`](https://gi
 * [PROV-XML](http://www.w3.org/TR/prov-xml/)
 * [PROV-JSON](http://www.w3.org/Submission/prov-json/)
 * [Graphviz](https://graphviz.org/) (DOT)
+
+## Citing
+
+If you publish work that uses MLflow2PROV, please cite MLflow2PROV as follows:
+
+```BibTeX
+@inproceedings{Schlegel23,
+  author    = {Schlegel, Marius and Sattler, Kai-Uwe},
+  title     = {{MLflow2PROV: Extracting Provenance from Machine Learning Experiments}},
+  booktitle = {{Proceedings of the 7th Workshop on Data Management for End-to-End Machine Learning (DEEM@SIGMOD '23)}},
+  year      = {2023},
+  publisher = {ACM},
+  url       = {https://doi.org/10.1145/3595360.3595859},
+}
+```
 
 ## Contributing
 

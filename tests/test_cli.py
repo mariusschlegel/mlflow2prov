@@ -75,7 +75,6 @@ class TestCli:
 
             assert "Validation failed" in result.output
 
-    @pytest.mark.xdist_group(name="group1")
     def test_extract(self):
         runner = CliRunner()
         result = runner.invoke(
@@ -91,7 +90,6 @@ class TestCli:
 
         assert result.exit_code == 0
 
-    @pytest.mark.xdist_group(name="group1")
     def test_load(self):
         content_xml = '<?xml version="1.0" encoding="ASCII"?>\n<prov:document xmlns:prov="http://www.w3.org/ns/prov#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>'
 
@@ -111,7 +109,6 @@ class TestCli:
 
             assert result.exit_code == 0
 
-    @pytest.mark.xdist_group(name="group1")
     def test_save(self):
         with tempfile.NamedTemporaryFile(
             mode="w",
@@ -137,7 +134,6 @@ class TestCli:
 
             assert result.exit_code == 0
 
-    @pytest.mark.xdist_group(name="group1")
     def test_merge(self):
         runner = CliRunner()
         result = runner.invoke(
@@ -161,7 +157,6 @@ class TestCli:
 
         assert result.exit_code == 0
 
-    @pytest.mark.xdist_group(name="group1")
     def test_transform(self):
         runner = CliRunner()
         result = runner.invoke(
@@ -180,7 +175,6 @@ class TestCli:
 
         assert result.exit_code == 0
 
-    @pytest.mark.xdist_group(name="group2")
     def test_statistics(self):
         runner = CliRunner()
         result = runner.invoke(

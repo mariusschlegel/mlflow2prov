@@ -14,10 +14,20 @@ The execution of the tests via including the coverage check is performed as foll
 poetry run pytest
 ```
 
-## Coverage Badge
+## Release
+
+### Coverage Badge
 
 The coverage badge used in the `README.md` can be generated as follows:
 
 ```bash
 poetry run genbadge coverage -i assets/coverage.xml -o assets/coverage-badge.svg
+```
+
+### Patch Creation
+
+```bash
+version="2.3.2"
+sed 's/model_versions = \[mv for mv in model_versions if mv.current_stage != STAGE_DELETED_INTERNAL\]/model_versions = \[mv for mv in model_versions\]/g' .venv/lib/python3.10/site-packages/mlflow/utils/search_utils.py | diff -u .venv/lib/python3.10/site-packages/mlflow/utils/search_utils.py - > patches/mlflow-$version-search_utils.patch
+sed '/.filter(SqlModelVersion.current_stage != STAGE_DELETED_INTERNAL)/d' .venv/lib/python3.10/site-packages/mlflow/store/model_registry/sqlalchemy_store.py | diff -u .venv/lib/python3.10/site-packages/mlflow/store/model_registry/sqlalchemy_store.py - > patches/mlflow-$version-sqlalchemy_store.patch
 ```
