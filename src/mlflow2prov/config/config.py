@@ -26,7 +26,7 @@ class Config:
 
     @staticmethod
     def get_schema() -> dict[str, Any]:
-        path = get_project_root() / "mlflow2prov" / "config" / "schema.json"
+        path = get_project_root() / "src" / "mlflow2prov" / "config" / "schema.json"
 
         with open(path, "rt", encoding="utf-8") as f:
             return json.loads(f.read())

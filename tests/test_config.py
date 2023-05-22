@@ -188,7 +188,6 @@ expected_schema_data = """
 """
 
 expected_config_data = """
-# yaml-language-server: $schema=../mlflow2prov/config/schema.json
 - extract:
         repository_path: "/home/user/dev/project_foo/project_foo.git"
         mlflow_url: "http://localhost-foo:5000"
@@ -209,7 +208,6 @@ expected_config_data = """
 """
 
 invalid_config_data = """
-# yaml-language-server: $schema=../mlflow2prov/config/schema.json
 - extract:
         mlflow_url: "http://localhost-foo:5000"
 - extract:

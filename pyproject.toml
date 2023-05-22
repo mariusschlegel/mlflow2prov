@@ -19,7 +19,7 @@ classifiers = [
     "Topic :: Scientific/Engineering",
     "Topic :: Scientific/Engineering :: Information Analysis",
 ]
-packages = [{ include = "mlflow2prov" }]
+packages = [{ include = "mlflow2prov", from = "src" }]
 
 [tool.poetry.scripts]
 mlflow2prov = "mlflow2prov.entrypoints.cli:cli"
@@ -48,7 +48,7 @@ pytest-mock = "^3.10.0"
 profile = "black"
 
 [tool.pytest.ini_options]
-addopts = "-rA --cov=mlflow2prov --cov-report term-missing --cov-report xml:assets/coverage.xml"
+addopts = "-rA --cov=src/mlflow2prov --cov-report term-missing --cov-report xml:docs/assets/coverage.xml"
 testpaths = ["tests"]
 log_level = "WARN"
 # log_cli = true

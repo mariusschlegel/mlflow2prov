@@ -21,7 +21,7 @@ poetry run pytest
 The coverage badge used in the `README.md` can be generated as follows:
 
 ```bash
-poetry run genbadge coverage -i assets/coverage.xml -o assets/coverage-badge.svg
+poetry run genbadge coverage -i docs/assets/coverage.xml -o docs/assets/coverage-badge.svg
 ```
 
 ### Patch Creation

@@ -1,12 +1,14 @@
 # MLflow2PROV
 
-[![Made-with-Python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org) [![W3C-PROV](https://img.shields.io/static/v1?logo=w3c&label=&message=PROV&labelColor=2c2c32&color=007acc&logoColor=007acc?logoWidth=200)](https://www.w3.org/TR/prov-overview/) [![License](https://img.shields.io/badge/license-Apache_2.0-green.svg)](https://opensource.org/licenses/Apache-2.0) [![Coverage](assets/coverage-badge.svg)](README.md) [![Black](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
+[![Made-with-Python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org) [![W3C-PROV](https://img.shields.io/static/v1?logo=w3c&label=&message=PROV&labelColor=2c2c32&color=007acc&logoColor=007acc?logoWidth=200)](https://www.w3.org/TR/prov-overview/) [![License](https://img.shields.io/badge/license-Apache_2.0-green.svg)](https://opensource.org/licenses/Apache-2.0) [![Coverage](docs/assets/coverage-badge.svg)](README.md) [![Black](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
 
 MLflow2PROV is a Python library and command line tool for extracting provenance graphs from ML experiment projects that use Git repositories and MLflow tracking. The underlying data model is compliant with the [W3C PROV](https://www.w3.org/TR/prov-overview/) specification.
 
 For a discussion of the ideas, please see the following paper:
 
 * Marius Schlegel and Kai-Uwe Sattler: [*MLflow2PROV: Extracting Provenance from Machine Learning Experiments*](https://doi.org/10.1145/3595360.3595859). 7th Workshop on Data Management for End-to-End Machine Learning (DEEM '23), June 18, 2023, Seattle, WA, USA.
+
+If you publish work that uses MLflow2PROV, please cite MLflow2PROV and use the [corresponding BibTeX entry](#citing) below.
 
 ## Installation
 
@@ -122,16 +124,16 @@ mlflow2prov extract --repository_path "/home/user/dev/mlproject-foo" --mlflow_ur
 MLflow2PROV supports configuration files in `.yaml` format that are functionally equivalent to command line invocations. To read configuration details from a file instead of specifying on the command line, use the `--config` option:
 
 ```bash
-mlflow2prov --config config/example.yaml
+mlflow2prov --config examples/config/example.yaml
 ```
 
 You can validate your configuration file (e.g. to check for syntactical errors) before as follows:
 
 ```bash
-mlflow2prov --validate config/example.yaml
+mlflow2prov --validate examples/config/example.yaml
 ```
 
-A configuration file functionally equivalent to the [above command line invocation example](#command-line-usage) is specified as follows (see also `config/example.yaml`):
+A configuration file functionally equivalent to the [above command line invocation example](#command-line-usage) is specified as follows (see also `examples/config/example.yaml`):
 
 ```yaml
 - extract:
@@ -162,7 +164,7 @@ MLflow2PROV supports multiple output formats provided by the [`prov`](https://gi
 * [PROV-O](http://www.w3.org/TR/prov-o/) (RDF)
 * [PROV-XML](http://www.w3.org/TR/prov-xml/)
 * [PROV-JSON](http://www.w3.org/Submission/prov-json/)
-* [Graphviz](https://graphviz.org/) (DOT)
+* [Graphviz](https://graphviz.org) (DOT)
 
 ## Citing
 
