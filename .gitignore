@@ -273,3 +273,7 @@ examples/integrations/mongodb/input/*
 examples/integrations/neo4j/data/
 examples/integrations/neo4j/input/*
 !examples/integrations/neo4j/input/.gitkeep
+examples/quickstart-example/mlflow/mlruns_/
+examples/quickstart-example/output/*
+!examples/quickstart-example/output/.gitkeep
+examples/quickstart-example/project/

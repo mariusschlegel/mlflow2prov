@@ -1,0 +1,8 @@
+- extract:
+        repository_path: "project/.git"
+        mlflow_url: "http://localhost:5000"
+- transform:
+        eliminate_duplicates: true
+- save:
+        output: output/output
+        format: [json, provn, rdf, xml, dot]

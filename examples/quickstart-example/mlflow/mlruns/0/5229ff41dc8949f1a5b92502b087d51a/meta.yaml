@@ -1,0 +1,15 @@
+artifact_uri: file:///home/user/dev/mlflow2prov/examples/quickstart-example/mlflow/mlruns/0/5229ff41dc8949f1a5b92502b087d51a/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 5229ff41dc8949f1a5b92502b087d51a
+run_name: sassy-dog-889
+run_uuid: 5229ff41dc8949f1a5b92502b087d51a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679401067531
+status: 1
+tags: []
+user_id: user

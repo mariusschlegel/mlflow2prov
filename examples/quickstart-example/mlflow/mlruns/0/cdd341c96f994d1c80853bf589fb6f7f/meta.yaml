@@ -1,0 +1,15 @@
+artifact_uri: file:///home/user/dev/mlflow2prov/examples/quickstart-example/mlflow/mlruns/0/cdd341c96f994d1c80853bf589fb6f7f/artifacts
+end_time: 1678284930233
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: cdd341c96f994d1c80853bf589fb6f7f
+run_name: trusting-conch-126
+run_uuid: cdd341c96f994d1c80853bf589fb6f7f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678284926127
+status: 3
+tags: []
+user_id: user

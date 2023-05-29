@@ -1,0 +1,12 @@
+creation_timestamp: 1678284929852
+current_stage: Deleted_Internal
+description: null
+last_updated_timestamp: 1681204420371
+name: model
+run_id: cdd341c96f994d1c80853bf589fb6f7f
+run_link: null
+source: file:///home/user/dev/mlflow2prov/examples/quickstart-example/mlflow/mlruns/0/cdd341c96f994d1c80853bf589fb6f7f/artifacts/model
+status: READY
+status_message: null
+user_id: user
+version: 2

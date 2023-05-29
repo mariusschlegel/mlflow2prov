@@ -1,0 +1,8 @@
+artifact_location: file:///home/user/dev/mlflow2prov/examples/quickstart-example/mlflow/mlruns/.trash/926685343312215563
+creation_time: 1680686255445
+experiment_id: '926685343312215563'
+last_update_time: 1680688025647
+lifecycle_stage: deleted
+name: My Experiment
+tags:
+  mlflow.user: user
