@@ -1,4 +1,5 @@
 import json
+import os
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -6,8 +7,6 @@ import jsonschema
 import jsonschema.exceptions
 import ruamel.yaml
 import ruamel.yaml.constructor
-
-from mlflow2prov.root import get_project_root
 
 
 @dataclass
@@ -26,7 +25,7 @@ class Config:
 
     @staticmethod
     def get_schema() -> dict[str, Any]:
-        path = get_project_root() / "src" / "mlflow2prov" / "config" / "schema.json"
+        path = os.path.join(os.path.dirname(__file__), "schema.json")
 
         with open(path, "rt", encoding="utf-8") as f:
             return json.loads(f.read())

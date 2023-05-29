@@ -7,7 +7,7 @@ def document_factory(
     records: Sequence[prov.model.ProvRecord] | None = None,
 ) -> prov.model.ProvDocument:
     doc = prov.model.ProvDocument(records=records)
-    doc.set_default_namespace(uri="https://github.com/mariusschlegel/mlflow2prov")
+    doc.set_default_namespace(uri="https://github.com/mariusschlegel/mlflow2prov/")
 
     return doc
 

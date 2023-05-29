@@ -4,8 +4,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "mlflow2prov"
-version = "0.1.1"
-description = "Extract provenance graphs compliant with W3C PROV from ML experiment projects that use Git repositories and MLflow tracking."
+version = "0.1.2"
+description = "Extract provenance graphs compliant with W3C PROV from ML experiment projects that use Git repositories and MLflow tracking"
 license = "Apache-2.0"
 authors = ["Marius Schlegel <marius.schlegel@tu-ilmenau.de>"]
 readme = "README.md"
@@ -31,7 +31,7 @@ gitpython = "^3.1.31"
 jsonschema = "^4.17.3"
 mlflow = "==2.3.2"
 prov = { extras = ["dot"], version = "^2.0.0" }
-ruamel-yaml = "^0.17.26"
+"ruamel.yaml" = "^0.17.28"
 
 [tool.poetry.group.dev]
 optional = true

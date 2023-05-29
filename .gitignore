@@ -72,12 +72,12 @@ Temporary Items
 *.icloud
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+.vscode/
+#!.vscode/settings.json
+#!.vscode/tasks.json
+#!.vscode/launch.json
+#!.vscode/extensions.json
+#!.vscode/*.code-snippets
 
 # Local History for Visual Studio Code
 .history/
@@ -260,5 +260,16 @@ cython_debug/
 prov.*
 *.provn
 
-## Paths and files ###
+### Paths and files ###
 tests/resources/testproject/
+examples/integrations/jena_fuseki/data/
+examples/integrations/jena_fuseki/input/*
+!examples/integrations/jena_fuseki/input/.gitkeep
+examples/integrations/jena_fuseki/jena-docker/
+examples/integrations/jena_fuseki/ProvToolbox/
+examples/integrations/jena_fuseki/provconvert*
+examples/integrations/mongodb/input/*
+!examples/integrations/mongodb/input/.gitkeep
+examples/integrations/neo4j/data/
+examples/integrations/neo4j/input/*
+!examples/integrations/neo4j/input/.gitkeep

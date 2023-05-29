@@ -166,6 +166,15 @@ MLflow2PROV supports multiple output formats provided by the [`prov`](https://gi
 * [PROV-JSON](http://www.w3.org/Submission/prov-json/)
 * [Graphviz](https://graphviz.org) (DOT)
 
+### Integrations
+
+For further processing and usage of the output files, some exemplary helpers are provided in the directory `examples/integrations/`, which demonstrate and simplify the integration of MLflow2PROV with other systems:
+
+* the graph DBMS [Neo4J](https://neo4j.com) supporting Cypher queries,
+* the NoSQL DBMS [MongoDB](https://www.mongodb.com) supporting MQL queries,
+* the RDF triple store [Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/index.html) supporting SPARQL queries, and
+* the visualization software [Graphviz](https://graphviz.org) for DOT file processing.
+
 ## Citing
 
 If you publish work that uses MLflow2PROV, please cite MLflow2PROV as follows:

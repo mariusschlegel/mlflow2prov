@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import hashlib
 import logging
 import pathlib
@@ -82,15 +83,40 @@ class DeserializationFormat(Enum):
         return list(cls._value2member_map_.keys())
 
 
+def escape(document: prov.model.ProvDocument) -> prov.model.ProvDocument:
+    document_escaped: prov.model.ProvDocument = copy.deepcopy(document)
+
+    record: prov.model.ProvRecord
+    for record in document_escaped._records:
+        if record.is_element():
+            record._identifier = prov.model.QualifiedName(
+                namespace=record._identifier._namespace,
+                localpart=record._identifier._localpart.replace("=", "\\="),
+            )
+        else:  # record.is_relation()
+            for attr_name in record.FORMAL_ATTRIBUTES[0:2]:
+                qname = record._attributes[attr_name].pop()
+                record._attributes[attr_name].add(
+                    prov.model.QualifiedName(
+                        namespace=qname._namespace,
+                        localpart=qname._localpart.replace("=", "\\="),
+                    )
+                )
+
+    return document_escaped
+
+
 def serialize(
     document: prov.model.ProvDocument,
     format: SerializationFormat = SerializationFormat.JSON,
 ) -> str | None:
-    if format != SerializationFormat.DOT:
-        # format == "json" or
-        # format == "xml" or
-        # format == "rdf" or
+    if format == SerializationFormat.PROVN or format == SerializationFormat.JSON:
         # format == "provn"
+        # format == "json"
+        return escape(document).serialize(format=SerializationFormat.to_string(format))
+    elif format == SerializationFormat.RDF or format == SerializationFormat.XML:
+        # format == "rdf
+        # format == "xml"
         return document.serialize(format=SerializationFormat.to_string(format))
     else:
         # format == "dot"
@@ -218,8 +244,7 @@ def statistics(
 ) -> str:
     if format == StatisticsFormat.CSV:
         formatter = format_stats_as_csv
-    else:
-        # format == "table"
+    else:  # format == "table"
         formatter = format_stats_as_ascii_table
 
     elements = Counter(
@@ -232,8 +257,7 @@ def statistics(
     stats = dict(sorted(elements.items()))
     if resolution == StatisticsResolution.FINE:
         stats.update(sorted(relations.items()))
-    else:
-        # resolution == StatisticsResolution.COARSE
+    else:  # resolution == StatisticsResolution.COARSE
         stats.update({"Relations": relations.total()})
 
     return formatter(stats)
@@ -334,7 +358,7 @@ def merge_duplicated_agents(
         # rebuild the attributes of the current agent
         # start by adding the uncovered given name
         attrs[name].add(name)
-        # add all other attributes aswell
+        # add all other attributes as well
         attrs[name].update(t for t in agent.attributes if t[0].localpart != "name")
 
         repr_attrs = [tpl for tpl in attrs[name] if tpl[1] in ("name", "email")]

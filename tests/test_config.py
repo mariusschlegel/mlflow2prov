@@ -1,11 +1,10 @@
 import json
-import pathlib
+import os
 import tempfile
 
 import pytest
 
 from mlflow2prov.config.config import Config
-from mlflow2prov.root import get_project_root
 
 expected_schema_data = """
 {
@@ -262,10 +261,8 @@ class TestConfig:
         assert schema == expected_schema
 
     def test_read(self):
-        path: pathlib.Path = (
-            get_project_root() / "tests" / "resources" / "testconfig.yaml"
-        )
-        config = Config.read(str(path))
+        path = os.path.join(os.path.dirname(__file__), "resources", "testconfig.yaml")
+        config = Config.read(path)
 
         with tempfile.NamedTemporaryFile(mode="r+", encoding="utf-8") as tmpfile:
             tmpfile.write(expected_config_data)
