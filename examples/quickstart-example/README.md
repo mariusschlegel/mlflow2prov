@@ -20,8 +20,8 @@ sudo dnf install graphviz  # exemplary installation in Fedora 38
 To currently use all features of MLflow2PROV, the application of two minor patches to the MLflow installation is required. You can apply the patches as follows:
 
 ```bash
-patch .venv/lib/python3.10/site-packages/mlflow/utils/search_utils.py < ../../patches/mlflow-2.3.2-search_utils.patch
-patch .venv/lib/python3.10/site-packages/mlflow/store/model_registry/sqlalchemy_store.py < ../../patches/mlflow-2.3.2-sqlalchemy_store.patch
+patch .venv/lib/python3.10/site-packages/mlflow/utils/search_utils.py < ../../patches/mlflow-2.4.1-search_utils.patch
+patch .venv/lib/python3.10/site-packages/mlflow/store/model_registry/sqlalchemy_store.py < ../../patches/mlflow-2.4.1-sqlalchemy_store.patch
 ```
 
 Specifically, these patches adjust the `FileStore` and `SQLAlchemyStore` Model Registry backend implementations to also enable reading deleted `ModelVersion` objects. This is especially required to create instances of the `RegisteredModelVersionDeletion` provenance model. The issue has been already reported to the MLflow project (see <https://github.com/mlflow/mlflow/issues/8225>).

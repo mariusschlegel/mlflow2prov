@@ -27,7 +27,8 @@ poetry run genbadge coverage -i docs/assets/coverage.xml -o docs/assets/coverage
 ### Patch Creation
 
 ```bash
-version="2.3.2"
-sed 's/model_versions = \[mv for mv in model_versions if mv.current_stage != STAGE_DELETED_INTERNAL\]/model_versions = \[mv for mv in model_versions\]/g' .venv/lib/python3.10/site-packages/mlflow/utils/search_utils.py | diff -u .venv/lib/python3.10/site-packages/mlflow/utils/search_utils.py - > patches/mlflow-$version-search_utils.patch
-sed '/.filter(SqlModelVersion.current_stage != STAGE_DELETED_INTERNAL)/d' .venv/lib/python3.10/site-packages/mlflow/store/model_registry/sqlalchemy_store.py | diff -u .venv/lib/python3.10/site-packages/mlflow/store/model_registry/sqlalchemy_store.py - > patches/mlflow-$version-sqlalchemy_store.patch
+python_version="3.10"
+mlflow_version="2.4.1"
+sed 's/model_versions = \[mv for mv in model_versions if mv.current_stage != STAGE_DELETED_INTERNAL\]/model_versions = \[mv for mv in model_versions\]/g' .venv/lib/python$python_version/site-packages/mlflow/utils/search_utils.py | diff -u .venv/lib/python$python_version/site-packages/mlflow/utils/search_utils.py - > patches/mlflow-$mlflow_version-search_utils.patch
+sed '/.filter(SqlModelVersion.current_stage != STAGE_DELETED_INTERNAL)/d' .venv/lib/python$python_version/site-packages/mlflow/store/model_registry/sqlalchemy_store.py | diff -u .venv/lib/python$python_version/site-packages/mlflow/store/model_registry/sqlalchemy_store.py - > patches/mlflow-$mlflow_version-sqlalchemy_store.patch
 ```

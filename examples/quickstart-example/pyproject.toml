@@ -11,6 +11,6 @@ license = "Apache-2.0"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "~3.10"
-mlflow = "==2.3.2"
+python = ">=3.10, <=3.11"
+mlflow = "==2.4.1"
 mlflow2prov = { git = "https://github.com/mariusschlegel/mlflow2prov" }
