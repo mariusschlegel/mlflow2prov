@@ -6,7 +6,7 @@ MLflow2PROV is a Python library and command line tool for extracting provenance 
 
 For a discussion of the ideas, please see the following paper:
 
-* Marius Schlegel and Kai-Uwe Sattler: [*MLflow2PROV: Extracting Provenance from Machine Learning Experiments*](https://doi.org/10.1145/3595360.3595859). 7th Workshop on Data Management for End-to-End Machine Learning (DEEM '23), June 18, 2023, Seattle, WA, USA.
+* Marius Schlegel and Kai-Uwe Sattler: [*MLflow2PROV: Extracting Provenance from Machine Learning Experiments*](https://doi.org/10.1145/3595360.3595859). 7th Workshop on Data Management for End-to-End Machine Learning (DEEM@SIGMOD '23), June 18, 2023, Seattle, WA, USA.
 
 If you publish work that uses MLflow2PROV, please cite MLflow2PROV and use the [corresponding BibTeX entry](#citing) below.
 
@@ -185,7 +185,8 @@ If you publish work that uses MLflow2PROV, please cite MLflow2PROV as follows:
   title     = {{MLflow2PROV: Extracting Provenance from Machine Learning Experiments}},
   booktitle = {{Proceedings of the 7th Workshop on Data Management for End-to-End Machine Learning (DEEM@SIGMOD '23)}},
   year      = {2023},
-  publisher = {ACM},
+  publisher = {{ACM}},
+  doi       = {10.1145/3595360.3595859},
   url       = {https://doi.org/10.1145/3595360.3595859},
 }
 ```

@@ -7,6 +7,7 @@ This directory contains a ready-to-run ML experiment project that can be used to
 The dependencies can be installed with Poetry as follows:
 
 ```bash
+poetry env use 3.10.11
 poetry install
 ```
 

@@ -256,12 +256,8 @@ cython_debug/
 # Poetry local configuration file - https://python-poetry.org/docs/configuration/#local-configuration
 #poetry.toml
 
-### Provenance ###
-prov.*
-*.provn
-
 ### Paths and files ###
-tests/resources/testproject/
+benchmark/
 examples/integrations/jena_fuseki/data/
 examples/integrations/jena_fuseki/input/*
 !examples/integrations/jena_fuseki/input/.gitkeep
@@ -277,3 +273,4 @@ examples/quickstart-example/mlflow/mlruns_/
 examples/quickstart-example/output/*
 !examples/quickstart-example/output/.gitkeep
 examples/quickstart-example/project/
+tests/resources/testproject/

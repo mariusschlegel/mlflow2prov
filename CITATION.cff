@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Schlegel"
+  given-names: "Marius"
+  orcid: "https://orcid.org/0000-0001-6596-2823"
+title: "MLflow2PROV"
+url: "https://github.com/mariusschlegel/mlflow2prov"
+preferred-citation:
+    type: conference-paper
+    authors:
+    - family-names: "Schlegel"
+      given-names: "Marius"
+      orcid: "https://orcid.org/0000-0001-6596-2823"
+    - family-names: "Sattler"
+      given-names: "Kai-Uwe"
+      orcid: "https://orcid.org/0000-0003-1608-7721"
+    title: "MLflow2PROV: Extracting Provenance from Machine Learning Experiments"
+    collection-title: "Proceedings of the 7th Workshop on Data Management for End-to-End Machine Learning (DEEM@SIGMOD '23)"
+    collection-type: proceedings
+    doi: 10.1145/3595360.3595859
+    date-published: 2023-06-18
