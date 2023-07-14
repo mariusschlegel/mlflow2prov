@@ -1,5 +1,5 @@
---- .venv/lib/python3.10/site-packages/mlflow/utils/search_utils.py	2023-07-06 11:05:08.767097566 +0200
-+++ -	2023-07-06 11:24:11.247110144 +0200
+--- .venv/lib/python3.10/site-packages/mlflow/utils/search_utils.py	2023-07-14 22:56:12.863158776 +0200
++++ -	2023-07-14 22:57:57.908550784 +0200
 @@ -1259,7 +1259,7 @@
      @classmethod
      def filter(cls, model_versions, filter_string):  # pylint: disable=arguments-renamed
