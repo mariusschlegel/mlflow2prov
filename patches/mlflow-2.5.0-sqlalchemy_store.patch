@@ -1,6 +1,6 @@
---- .venv/lib/python3.10/site-packages/mlflow/store/model_registry/sqlalchemy_store.py	2023-07-14 22:56:12.850158873 +0200
-+++ -	2023-07-14 22:58:05.496177568 +0200
-@@ -925,7 +925,6 @@
+--- .venv/lib/python3.10/site-packages/mlflow/store/model_registry/sqlalchemy_store.py	2023-07-17 10:46:19.484886759 +0200
++++ -	2023-07-17 10:47:12.522645768 +0200
+@@ -918,7 +918,6 @@
          with self.ManagedSessionMaker() as session:
              query = (
                  filter_query.options(*self._get_eager_model_version_query_options())

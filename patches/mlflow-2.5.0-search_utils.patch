@@ -1,6 +1,6 @@
---- .venv/lib/python3.10/site-packages/mlflow/utils/search_utils.py	2023-07-14 22:56:12.863158776 +0200
-+++ -	2023-07-14 22:57:57.908550784 +0200
-@@ -1259,7 +1259,7 @@
+--- .venv/lib/python3.10/site-packages/mlflow/utils/search_utils.py	2023-07-17 10:46:19.499886698 +0200
++++ -	2023-07-17 10:47:07.422442839 +0200
+@@ -1257,7 +1257,7 @@
      @classmethod
      def filter(cls, model_versions, filter_string):  # pylint: disable=arguments-renamed
          """Filters a set of model versions based on a search filter string."""
