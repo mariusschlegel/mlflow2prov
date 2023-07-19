@@ -373,6 +373,13 @@ class TestOperations:
         result_expected = 'digraph G {\ncharset="utf-8";\nrankdir=BT;\n}\n'
         assert result == result_expected
 
+        result = serialize(
+            document=doc,
+            format=SerializationFormat.XML,
+        )
+        result_expected = '<?xml version=\'1.0\' encoding=\'ASCII\'?>\n<prov:document xmlns:prov="http://www.w3.org/ns/prov#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>\n'
+        assert result == result_expected
+
     def test_write_prov_file(self, capfd):
         doc = prov.model.ProvDocument()
         content_expected = serialize(

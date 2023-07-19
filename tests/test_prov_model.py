@@ -7,10 +7,15 @@ import prov.model
 from mlflow2prov.adapters.git.fetcher import GitFetcher
 from mlflow2prov.adapters.mlflow.fetcher import MLflowFetcher
 from mlflow2prov.adapters.repository import InMemoryRepository
+from mlflow2prov.domain.constants import ProvRole
 from mlflow2prov.domain.model import (
     Commit,
     Experiment,
     LifecycleStage,
+    RegisteredModel,
+    RegisteredModelVersion,
+    RegisteredModelVersionStage,
+    RegisteredModelVersionTag,
     Run,
     RunStatus,
     User,
@@ -220,6 +225,202 @@ class TestExperimentDeletionModel:
         model = ExperimentDeletionModel(experiment, run)
 
         assert model.context == ProvContext(document=prov.model.ProvDocument())
+
+
+class TestRegisteredModelVersionDeletionModel:
+    def test_post_init(self):
+        name = f"registered-model-name-{random_suffix()}"
+        version = f"registered-model-version-{random_suffix()}"
+        created_at = today
+        last_updated_at = today
+        description = f"registered-model-version-description-{random_suffix()}"
+        user = User.from_username_str(f"user-name-{random_suffix()}")
+        registered_model_version_stage = RegisteredModelVersionStage.NONE
+        source_path = f"source-path-{random_suffix()}"
+        run_id = f"run-id-{random_suffix()}"
+        status = f"status-{random_suffix()}"
+        status_message = f"status-message-{random_suffix()}"
+        tags = []
+        run_link = f"run-link-{random_suffix()}"
+
+        registered_model_version = RegisteredModelVersion(
+            name=name,
+            version=version,
+            created_at=created_at,
+            last_updated_at=last_updated_at,
+            description=description,
+            user=user,
+            registered_model_version_stage=registered_model_version_stage,
+            source_path=source_path,
+            run_id=run_id,
+            status=status,
+            status_message=status_message,
+            tags=tags,
+            run_link=run_link,
+        )
+
+        model = RegisteredModelVersionDeletionModel(registered_model_version)
+
+        assert model.context == ProvContext(document=prov.model.ProvDocument())
+
+    def test_query(self):
+        name = f"registered-model-name-{random_suffix()}"
+        version = f"registered-model-version-{random_suffix()}"
+        created_at = today
+        last_updated_at = today
+        description = f"registered-model-version-description-{random_suffix()}"
+        user = User.from_username_str(f"user-name-{random_suffix()}")
+        registered_model_version_stage = RegisteredModelVersionStage.DELETED_INTERNAL
+        source_path = f"source-path-{random_suffix()}"
+        run_id = f"run-id-{random_suffix()}"
+        status = f"status-{random_suffix()}"
+        status_message = f"status-message-{random_suffix()}"
+        tags = []
+        run_link = f"run-link-{random_suffix()}"
+
+        registered_model_version = RegisteredModelVersion(
+            name=name,
+            version=version,
+            created_at=created_at,
+            last_updated_at=last_updated_at,
+            description=description,
+            user=user,
+            registered_model_version_stage=registered_model_version_stage,
+            source_path=source_path,
+            run_id=run_id,
+            status=status,
+            status_message=status_message,
+            tags=tags,
+            run_link=run_link,
+        )
+
+        name = f"registered-model-name-{random_suffix()}"
+        created_at = today
+        last_updated_at = today
+        description = f"registered-model-description-{random_suffix()}"
+        user = User.from_username_str(f"user-name-{random_suffix()}")
+        versions = [registered_model_version]
+        tags = []
+
+        registered_model = RegisteredModel(
+            name=name,
+            created_at=created_at,
+            last_updated_at=last_updated_at,
+            description=description,
+            user=user,
+            versions=versions,
+            tags=tags,
+        )
+
+        model = RegisteredModelVersionDeletionModel(registered_model_version)
+        mlflow_repository = InMemoryRepository()
+        mlflow_repository.add(registered_model)
+        query_result = model.query(InMemoryRepository(), mlflow_repository)
+
+        for el in query_result:
+            assert el[0] == registered_model_version
+
+    def build_prov_model(
+        self, registered_model_version: RegisteredModelVersion
+    ) -> prov.model.ProvDocument:
+        context = ProvContext(prov.model.ProvDocument())
+
+        context.add_element(registered_model_version)
+        if registered_model_version.tags:
+            for registered_model_version_tag in registered_model_version.tags:
+                context.add_element(registered_model_version_tag)
+        context.add_element(registered_model_version.deletion)
+        if registered_model_version.user:
+            context.add_element(registered_model_version.user)
+
+        if registered_model_version.user:
+            context.add_relation(
+                registered_model_version.deletion,
+                registered_model_version.user,
+                prov.model.ProvAssociation,
+            )
+        context.add_relation(
+            registered_model_version,
+            registered_model_version.deletion,
+            prov.model.ProvInvalidation,
+            {
+                str(
+                    prov.model.PROV_ATTR_STARTTIME
+                ): registered_model_version.deletion.start_time,
+                str(prov.model.PROV_ROLE): ProvRole.DELETED_REGISTERED_MODEL_VERSION,
+            },
+        )
+        if registered_model_version.tags:
+            for registered_model_version_tag in registered_model_version.tags:
+                context.add_relation(
+                    registered_model_version,
+                    registered_model_version_tag,
+                    prov.model.ProvMembership,
+                )
+                context.add_relation(
+                    registered_model_version_tag,
+                    registered_model_version.deletion,
+                    prov.model.ProvInvalidation,
+                    {
+                        str(
+                            prov.model.PROV_ATTR_STARTTIME
+                        ): registered_model_version.deletion.start_time,
+                        str(
+                            prov.model.PROV_ROLE
+                        ): ProvRole.DELETED_REGISTERED_MODEL_VERSION,
+                    },
+                )
+
+        return context.document
+
+    def test_build_prov_model(self):
+        registered_model_name = f"registered-model-name-{random_suffix()}"
+        registered_model_version = f"registered-model-version-{random_suffix()}"
+        name = f"registered-model-version-tag-name-{random_suffix()}"
+        value = f"registered-model-version-tag-value-{random_suffix()}"
+
+        registered_model_version_tag = RegisteredModelVersionTag(
+            registered_model_name=registered_model_name,
+            registered_model_version=registered_model_version,
+            name=name,
+            value=value,
+        )
+
+        name = f"registered-model-name-{random_suffix()}"
+        version = f"registered-model-version-{random_suffix()}"
+        created_at = today
+        last_updated_at = today
+        description = f"registered-model-version-description-{random_suffix()}"
+        user = User.from_username_str(f"user-name-{random_suffix()}")
+        registered_model_version_stage = RegisteredModelVersionStage.DELETED_INTERNAL
+        source_path = f"source-path-{random_suffix()}"
+        run_id = f"run-id-{random_suffix()}"
+        status = f"status-{random_suffix()}"
+        status_message = f"status-message-{random_suffix()}"
+        tags = [registered_model_version_tag]
+        run_link = f"run-link-{random_suffix()}"
+
+        registered_model_version = RegisteredModelVersion(
+            name=name,
+            version=version,
+            created_at=created_at,
+            last_updated_at=last_updated_at,
+            description=description,
+            user=user,
+            registered_model_version_stage=registered_model_version_stage,
+            source_path=source_path,
+            run_id=run_id,
+            status=status,
+            status_message=status_message,
+            tags=tags,
+            run_link=run_link,
+        )
+
+        model = RegisteredModelVersionDeletionModel(registered_model_version)
+        doc = model.build_prov_model()
+
+        assert doc != False
+        assert doc == self.build_prov_model(registered_model_version)
 
 
 class TestCallableModel:

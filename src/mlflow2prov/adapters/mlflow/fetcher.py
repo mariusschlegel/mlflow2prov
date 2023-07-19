@@ -134,7 +134,7 @@ class MLflowFetcher:
             if run != None:
                 yield Run(
                     run_id=run.info.run_id,
-                    name=run.info.run_name,
+                    name=str(run.info.run_name),
                     experiment_id=run.info.experiment_id,
                     user=User.from_username_str(run.info.user_id)
                     if run.info.user_id
@@ -213,8 +213,10 @@ class MLflowFetcher:
                     source_type=run.data.tags.get(
                         mlflow.utils.mlflow_tags.MLFLOW_SOURCE_TYPE, None
                     ),
-                    source_name=run.data.tags.get(
-                        mlflow.utils.mlflow_tags.MLFLOW_SOURCE_NAME, None
+                    source_name=str(
+                        run.data.tags.get(
+                            mlflow.utils.mlflow_tags.MLFLOW_SOURCE_NAME, None
+                        )
                     ).strip(),
                     source_git_commit=run.data.tags.get(
                         mlflow.utils.mlflow_tags.MLFLOW_GIT_COMMIT, None
