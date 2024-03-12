@@ -49,7 +49,7 @@ poetry install --with dev
 
 ## Getting Started
 
-The repository [`mlflow2prov-quickstart-example`](https://github.com/mariusschlegel/mlflow2prov-quickstart-example) provides a ready-to-run ML project including a prepared MLflow instance that can be used to try out MLflow2PROV. Please read [`mlflow2prov-quickstart-example/README.md`](https://github.com/mariusschlegel/mlflow2prov-quickstart-example/blob/main/README.md) for detailed instructions.
+The directory `examples/quickstart-example/` provides a ready-to-run ML project including a prepared MLflow instance that can be used to try out MLflow2PROV. Please read [`examples/quickstart-example/README.md`](examples/quickstart-example/README.md) for detailed instructions.
 
 ## Usage
 
@@ -199,4 +199,4 @@ Further information on contributing can be found in the document [`CONTRIBUTING.
 
 ## License
 
-This project is Apache 2.0 licensed. Copyright © 2023 by Marius Schlegel.
+This project is Apache 2.0 licensed. Copyright © 2023–2024 by Marius Schlegel.
